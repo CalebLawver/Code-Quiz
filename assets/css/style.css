@@ -1,0 +1,23 @@
+/* {
+    box-sizing:border-box;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+:root {
+    --primary: rgb(31, 191, 212);
+    --secondary: ;
+    --tertiary: ;
+}
+
+body {
+    background: white;
+    color: rgb(46, 45, 45);
+    margin: 20px;
+    display: flex;
+}
+
+header {
+    margin: 5px auto;
+    border-bottom: 5px solid var(--primary);
+    text-align: center;
+}

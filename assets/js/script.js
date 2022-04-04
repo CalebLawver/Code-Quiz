@@ -2,7 +2,7 @@
 
 // timer
 var timerEl = document.querySelector(".timer");
-var secondsLeft = 60;
+var secondsLeft = 120;
 
 // start screen
 var startScreen = document.querySelector("#start-screen");
@@ -14,6 +14,10 @@ var start = document.querySelector("#start-quiz");
 var questionsEl = document.querySelector(".quest-asked");
 var questionBoxEl = document.querySelector("#all-questions");
 var answersEl = document.querySelector(".question-list");
+var answerPop = document.querySelector("#are-you-right");
+
+// answer button
+const ansBtn = document.querySelectorAll("button.answer-btn");
 
 // Array of questions
 var questions = [
@@ -50,8 +54,10 @@ var ans1 = document.querySelector("#answer-1");
 var ans2 = document.querySelector("#answer-2");
 var ans3 = document.querySelector("#answer-3");
 
+// setting hidden html elements
 questionsEl.style.display = "none";
 answersEl.style.display = "none";
+answerPop.style.display = "none";
 
 // starting the quiz
 function startQuiz() {
@@ -89,10 +95,41 @@ function setQuestion(id) {
 
 // checking the answer
 function checkAnswer(event) {
+    debugger;
     event.preventDefault();
 
     // creating an element inside html
+    answerPop.style.display = "block";
+    var p = document.createElement("p");
+    answerPop.appendChild(p);
+
+    // displaying element for a few seconds
+    startTime(function() {
+        p.style.display = "none";
+    }, 2000);
+
+    // Were you right or wrong?
+    if (questions[questionNumber].correct === event.target.value) {
+        p.textContent = "You were correct!"
+    }
+
+    // if you were wrong
+    else if (questions[questionNumber].correct !== event.target.value) {
+        p.textContent = "You were wrong. :(";
+    }
+
+    // moving on to next question
+    if (questionNumber < questions.length) {
+        questionNumber++;
+    }
+    setQuestion(questionNumber);
 }
 
 // Events
 start.addEventListener("click", startQuiz);
+
+// checking answer on click event
+ansBtn.forEach(item => {
+    item.addEventListener("click", checkAnswer);
+});
+

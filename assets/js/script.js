@@ -45,6 +45,13 @@ var ans1 = document.querySelector("#answer-1");
 var ans2 = document.querySelector("#answer-2");
 var ans3 = document.querySelector("#answer-3");
 
+// starting the quiz
+function startQuiz() {
+    questionNumber = 0
+    startTime();
+    setQuestion(questionNumber);
+}
+
 // timer function
 function startTime() {
     var timeInterval = setInterval(function() {
@@ -62,13 +69,6 @@ function startTime() {
         displayMessage();
         }
     }, 1000);
-}
-
-// starting the quiz
-function startQuiz() {
-    questionNumber = 0
-    startTime();
-    setQuestion(questionNumber);
 }
 
 // setting question ID's

@@ -20,5 +20,3 @@ SO THAT I can gauge my progress compared to my peers
 * 5 questions with 4 answers each.
 * 60 second timer for each question
 * High score page, before the high score page the user can save their initials with the score.
-
-test from remote

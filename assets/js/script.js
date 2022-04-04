@@ -4,6 +4,9 @@
 var time = document.querySelector(".timer");
 var secondsLeft = 60;
 
+// start screen
+var startScreen = document.querySelector("#start-screen");
+
 // to start quiz
 var start = document.querySelector("#start-quiz");
 
@@ -45,30 +48,27 @@ var ans1 = document.querySelector("#answer-1");
 var ans2 = document.querySelector("#answer-2");
 var ans3 = document.querySelector("#answer-3");
 
-// timer function
-function startTime() {
-    var timeInterval = setInterval(function() {
-    if (time > 1) {
-        timerEl.textContent = time;
-        time--;
-        }
-        else if (time === 1) {
-        timerEl.textContent = time;
-        time--;
-        }
-        else {
-        timerEl.textContent = '';
-        clearInterval(timeInterval);
-        displayMessage();
-        }
-    }, 1000);
-}
-
 // starting the quiz
 function startQuiz() {
+    startScreen.style.display = "none";
+    questionsEl.style.display = "block";
     questionNumber = 0
     startTime();
     setQuestion(questionNumber);
+}
+
+// timer function
+function startTime() {
+    var timeInterval = setInterval(function() {
+        timerEl.textContent = time;
+        time--;
+        if (time === 0 || questionNumber === questions.length) {
+        timerEl.textContent = time;
+        time--;
+        clearInterval(timeInterval);
+        questionsEl.style.display = "none";
+        }
+    }, 1000);
 }
 
 // setting question ID's

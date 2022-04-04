@@ -52,7 +52,7 @@ header {
     font-size: 1.3rem;
 }
 
-.start-quiz {
+#start-quiz {
     display: block;
     margin-top: 50px;
     margin-left: auto;

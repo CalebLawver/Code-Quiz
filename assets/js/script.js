@@ -1,7 +1,7 @@
 // global vars
 
 // timer
-var time = document.querySelector(".timer");
+var timerEl = document.querySelector(".timer");
 var secondsLeft = 60;
 
 // start screen
@@ -11,7 +11,9 @@ var startScreen = document.querySelector("#start-screen");
 var start = document.querySelector("#start-quiz");
 
 // questions
-var questionsEl = document.querySelector("#questions");
+var questionsEl = document.querySelector(".quest-asked");
+var questionBoxEl = document.querySelector("#all-questions");
+var answersEl = document.querySelector(".question-list");
 
 // Array of questions
 var questions = [
@@ -48,10 +50,14 @@ var ans1 = document.querySelector("#answer-1");
 var ans2 = document.querySelector("#answer-2");
 var ans3 = document.querySelector("#answer-3");
 
+questionsEl.style.display = "none";
+answersEl.style.display = "none";
+
 // starting the quiz
 function startQuiz() {
     startScreen.style.display = "none";
     questionsEl.style.display = "block";
+    answersEl.style.display = "block";
     questionNumber = 0
     startTime();
     setQuestion(questionNumber);
@@ -60,11 +66,10 @@ function startQuiz() {
 // timer function
 function startTime() {
     var timeInterval = setInterval(function() {
-        timerEl.textContent = time;
-        time--;
-        if (time === 0 || questionNumber === questions.length) {
-        timerEl.textContent = time;
-        time--;
+        timerEl.textContent = "Time Left: " + secondsLeft;
+        secondsLeft--;
+        if (secondsLeft === 0 || questionNumber === questions.length) {
+        secondsLeft--;
         clearInterval(timeInterval);
         questionsEl.style.display = "none";
         }
@@ -80,6 +85,13 @@ function setQuestion(id) {
         ans2.textContent = questions[id].answers[2];
         ans3.textContent = questions[id].answers[3];
     }
+}
+
+// checking the answer
+function checkAnswer(event) {
+    event.preventDefault();
+
+    // creating an element inside html
 }
 
 // Events

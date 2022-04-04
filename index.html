@@ -19,22 +19,33 @@
         </div>
     </header>
     <main>
-        <section class="wrapper">
-            <div class="front-page" id="start-screen">
+        <section class="wrapper" id="start-screen">
+            <div class="front-page">
                 <p>This coding quiz will ask you five different questions about HTML, CSS, and Javascript.
                 Be careful not to run out of time on the questions!
                 </p>
-                <button class="start-quiz button" type="button">Start Quiz</button>
+                <button class="button" type="button" id="start-quiz">Start Quiz</button>
             </div>
         </section>
-        <section class="wrapper">
+        <section class="wrapper" id="all-questions">
             <div class="questions" id="questions">
                 <ul class="question-list">
-                    <li class="question-li answer-btn"><button id="answer-0" value="0" type="button"></button></li>
-                    <li class="question-li answer-btn"><button id="answer-1" value="1" type="button"></li>
-                    <li class="question-li answer-btn"><button id="answer-2" value="2" type="button"></li>
-                    <li class="question-li answer-btn"><button id="answer-3" value="3" type="button"></li>
+                    <h2 class="quest-asked">Question</h2>
+                    <li class="question-li"><button class="answer-btn" id="answer-0" value="0" type="button">answer</button></li>
+                    <li class="question-li"><button class="answer-btn" id="answer-1" value="1" type="button">answer</button></li>
+                    <li class="question-li"><button class="answer-btn" id="answer-2" value="2" type="button">answer</button></li>
+                    <li class="question-li"><button class="answer-btn" id="answer-3" value="3" type="button">answer</button></li>
                 </ul>
+            </div>
+            <div id="are-you-right" class="are-you-right">
+                <hr>
+            </div>
+        </section>
+        <section class="wrapper" id="scores">
+            <div class="initials" id="initials">
+                <h2 class="enterInitials">Save Your Score!</h2>
+                <label for="name">Your Name</label>
+                <input type="text" placeholder="Your Initials" id="name" name="name" class="name-input" />
             </div>
         </section>
     </main> 

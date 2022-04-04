@@ -1,16 +1,30 @@
 // global vars
 
 // timer
-var time = document.querySelector(".timer");
-var secondsLeft = 60;
+var timerEl = document.querySelector(".timer");
+var secondsLeft = 120;
+
+// start screen
+var startScreen = document.querySelector("#start-screen");
 
 // to start quiz
 var start = document.querySelector("#start-quiz");
 
 // questions
-var questionsEl = document.querySelector("#questions");
+var questionsEl = document.querySelector(".quest-asked");
+var questionBoxEl = document.querySelector("#all-questions");
+var answersEl = document.querySelector(".question-list");
+var answerPop = document.querySelector("#are-you-right");
 
-// Array of questions
+// answer button
+const ansBtn = document.querySelectorAll("button.answer-btn");
+
+// high score vars
+var playerName = document.querySelector("#name");
+
+// Array's
+
+// array of questions
 var questions = [
     {
     question: "What does HTML stand for?",
@@ -39,14 +53,24 @@ var questions = [
     },
 ]
 
+var savedScores = []
+
 // calling answers
 var ans0 = document.querySelector("#answer-0");
 var ans1 = document.querySelector("#answer-1");
 var ans2 = document.querySelector("#answer-2");
 var ans3 = document.querySelector("#answer-3");
 
+// setting hidden html elements
+questionsEl.style.display = "none";
+answersEl.style.display = "none";
+answerPop.style.display = "none";
+
 // starting the quiz
 function startQuiz() {
+    startScreen.style.display = "none";
+    questionsEl.style.display = "block";
+    answersEl.style.display = "block";
     questionNumber = 0
     startTime();
     setQuestion(questionNumber);
@@ -55,18 +79,12 @@ function startQuiz() {
 // timer function
 function startTime() {
     var timeInterval = setInterval(function() {
-    if (time > 1) {
-        timerEl.textContent = time;
-        time--;
-        }
-        else if (time === 1) {
-        timerEl.textContent = time;
-        time--;
-        }
-        else {
-        timerEl.textContent = '';
+        timerEl.textContent = "Time Left: " + secondsLeft;
+        secondsLeft--;
+        if (secondsLeft === 0 || questionNumber === questions.length) {
+        secondsLeft--;
         clearInterval(timeInterval);
-        displayMessage();
+        questionsEl.style.display = "none";
         }
     }, 1000);
 }
@@ -82,5 +100,42 @@ function setQuestion(id) {
     }
 }
 
+// checking the answer
+function checkAnswer(event) {
+    debugger;
+    event.preventDefault();
+
+    // creating an element inside html
+    answerPop.style.display = "block";
+    var p = document.createElement("p");
+    answerPop.appendChild(p);
+
+    // displaying element for a few seconds
+    setTimeout(function() {
+        p.style.display = "none";
+    }, 2000);
+
+    // Were you right or wrong?
+    if (questions[questionNumber].correct === event.target.value) {
+        p.textContent = "You were correct!"
+    }
+
+    // if you were wrong
+    else if (questions[questionNumber].correct !== event.target.value) {
+        p.textContent = "You were wrong. :(";
+    }
+
+    // moving on to next question
+    if (questionNumber < questions.length) {
+        questionNumber++;
+    }
+    setQuestion(questionNumber);
+}
+
 // Events
 start.addEventListener("click", startQuiz);
+
+// checking answer on click event
+ansBtn.forEach(item => {
+    item.addEventListener("click", checkAnswer);
+});

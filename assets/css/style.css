@@ -66,3 +66,20 @@ header {
     margin: 5px;
     font-size: 1rem;
 }
+
+/* hidden elements */
+.question-list {
+    display: none;
+}
+
+.quest-asked {
+    display: none;
+}
+
+.are-you-right {
+    display: none;
+}
+
+.initials {
+    display: none;
+}

@@ -21,6 +21,7 @@ const ansBtn = document.querySelectorAll("button.answer-btn");
 
 // high score vars
 var playerName = document.querySelector("#name");
+var enterScreen = document.querySelector("#initials");
 
 // Array's
 
@@ -61,11 +62,6 @@ var ans1 = document.querySelector("#answer-1");
 var ans2 = document.querySelector("#answer-2");
 var ans3 = document.querySelector("#answer-3");
 
-// setting hidden html elements
-questionsEl.style.display = "none";
-answersEl.style.display = "none";
-answerPop.style.display = "none";
-
 // starting the quiz
 function startQuiz() {
     startScreen.style.display = "none";
@@ -85,6 +81,8 @@ function startTime() {
         secondsLeft--;
         clearInterval(timeInterval);
         questionsEl.style.display = "none";
+        answersEl.style.display = "none";
+        highScores();
         }
     }, 1000);
 }
@@ -102,7 +100,6 @@ function setQuestion(id) {
 
 // checking the answer
 function checkAnswer(event) {
-    debugger;
     event.preventDefault();
 
     // creating an element inside html
@@ -130,6 +127,12 @@ function checkAnswer(event) {
         questionNumber++;
     }
     setQuestion(questionNumber);
+}
+
+// High scores
+
+function highScores(event) {
+    enterScreen.style.display = "block";
 }
 
 // Events

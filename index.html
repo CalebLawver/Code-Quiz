@@ -30,7 +30,7 @@
         <section class="wrapper" id="all-questions">
             <div class="questions" id="questions">
                 <ul class="question-list">
-                    <h2 class="quest-asked">Question</h2>
+                    <h2 class="header quest-asked">Question</h2>
                     <li class="question-li"><button class="answer-btn" id="answer-0" value="0" type="button">answer</button></li>
                     <li class="question-li"><button class="answer-btn" id="answer-1" value="1" type="button">answer</button></li>
                     <li class="question-li"><button class="answer-btn" id="answer-2" value="2" type="button">answer</button></li>
@@ -42,11 +42,19 @@
             </div>
         </section>
         <section class="wrapper" id="scores">
-            <div class="initials" id="initials">
+            <div class="header initials" id="initials">
                 <h2 class="enterInitials">Save Your Score!</h2>
                 <label for="name">Your Name</label>
                 <input type="text" placeholder="Your Initials" id="name" name="name" class="name-input" />
                 <button class="init-btn" id="init-btn" type="submit">Submit</button>
+            </div>
+        </section>
+        <section class="wrapper" id="score-section">
+            <div class="highscores" id="highscores">
+                <h2 class="header">High Scores</h2>
+                <ol class="score-list" id="score-list">
+                    <!-- Scores will be added via JavaScript-->
+                </ol>
             </div>
         </section>
     </main> 

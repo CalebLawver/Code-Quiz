@@ -22,6 +22,9 @@ const ansBtn = document.querySelectorAll("button.answer-btn");
 // high score vars
 var playerName = document.querySelector("#name");
 var enterScreen = document.querySelector("#initials");
+var scoreSection = document.querySelector("#score-section");
+var scoreList = document.querySelector("#score-list");
+
 
 // Array's
 

@@ -78,12 +78,13 @@ function startTime() {
         timerEl.textContent = "Time Left: " + secondsLeft;
         secondsLeft--;
         if (secondsLeft === 0 || questionNumber === questions.length) {
-        secondsLeft--;
-        clearInterval(timeInterval);
-        questionsEl.style.display = "none";
-        answersEl.style.display = "none";
-        timerEl.style.display = "none";
-        enterScreen.style.display = "block";
+            secondsLeft--;
+            clearInterval(timeInterval);
+            questionsEl.style.display = "none";
+            answersEl.style.display = "none";
+            timerEl.style.display = "none";
+            enterScreen.style.display = "block";
+            score.textContent = secondsLeft;
         }
     }, 1000);
 };
@@ -141,7 +142,7 @@ function highScores(event) {
 
     var init = playerName.value.toUpperCase();
     debugger;
-    scoreList.push({playerName: init, score: secondsLeft});
+    scoreList.push({ initials: init, score: secondsLeft });
 
     // sorting the scores
     scoreList = scoreList.sort((a, b) => {
@@ -155,7 +156,7 @@ function highScores(event) {
     scoreListEl.innerHTML = "";
     for (let i = 0; i < scoreList.length; i++) {
         let li = document.createElement("li");
-        li.textContent = init + ": " + score;
+        li.textContent = scoreList[i].initials + ": " + scoreList[i].score;
         scoreListEl.append(li);
     }
 };

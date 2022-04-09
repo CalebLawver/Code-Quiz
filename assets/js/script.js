@@ -22,8 +22,11 @@ const ansBtn = document.querySelectorAll("button.answer-btn");
 // high score vars
 var playerName = document.querySelector("#name");
 var enterScreen = document.querySelector("#initials");
-var scoreSection = document.querySelector("#score-section");
-var scoreList = document.querySelector("#score-list");
+var scoreSection = document.querySelector("#highscores");
+var scoreListEl = document.querySelector("#score-list");
+var highBtn = document.querySelector("#init-btn");
+var score = document.querySelector("#score");
+var scoreList = [];
 
 
 // Array's
@@ -57,8 +60,6 @@ var questions = [
     },
 ]
 
-var savedScores = []
-
 // calling answers
 var ans0 = document.querySelector("#answer-0");
 var ans1 = document.querySelector("#answer-1");
@@ -85,10 +86,11 @@ function startTime() {
         clearInterval(timeInterval);
         questionsEl.style.display = "none";
         answersEl.style.display = "none";
-        highScores();
+        timerEl.style.display = "none";
+        enterScreen.style.display = "block";
         }
     }, 1000);
-}
+};
 
 // setting question ID's
 function setQuestion(id) {
@@ -99,7 +101,7 @@ function setQuestion(id) {
         ans2.textContent = questions[id].answers[2];
         ans3.textContent = questions[id].answers[3];
     }
-}
+};
 
 // checking the answer
 function checkAnswer(event) {
@@ -130,13 +132,35 @@ function checkAnswer(event) {
         questionNumber++;
     }
     setQuestion(questionNumber);
-}
+};
 
 // High scores
 
 function highScores(event) {
-    enterScreen.style.display = "block";
-}
+    event.preventDefault();
+    
+    enterScreen.style.display = "none";
+    scoreSection.style.display = "block";
+
+    var init = playerName.value.toUpperCase();
+    scoreList.push({playerName: init, score: secondsLeft});
+
+    // sorting the scores
+    scoreList = scoreList.sort((a, b) => {
+        if (a.score < b.score) {
+            return 1;
+        } else {
+            return -1;
+        }
+    });
+
+    scoreListEl.innerHTML = "";
+    for (let i = 0; i < scoreList.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = init + " " + score;
+        scoreListEl.append(li);
+    }
+};
 
 // Events
 start.addEventListener("click", startQuiz);
@@ -145,3 +169,6 @@ start.addEventListener("click", startQuiz);
 ansBtn.forEach(item => {
     item.addEventListener("click", checkAnswer);
 });
+
+// submitting player score to high scores list.
+highBtn.addEventListener("click", highScores);

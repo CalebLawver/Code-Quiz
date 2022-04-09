@@ -12,8 +12,7 @@ var start = document.querySelector("#start-quiz");
 
 // questions
 var questionsEl = document.querySelector(".quest-asked");
-var questionBoxEl = document.querySelector("#all-questions");
-var answersEl = document.querySelector(".question-list");
+var answersEl = document.querySelector("#all-questions");
 var answerPop = document.querySelector("#are-you-right");
 
 // answer button
@@ -27,9 +26,6 @@ var scoreListEl = document.querySelector("#score-list");
 var highBtn = document.querySelector("#init-btn");
 var score = document.querySelector("#score");
 var scoreList = [];
-
-
-// Array's
 
 // array of questions
 var questions = [
@@ -125,6 +121,7 @@ function checkAnswer(event) {
     // if you were wrong
     else if (questions[questionNumber].correct !== event.target.value) {
         p.textContent = "You were wrong. :(";
+        secondsLeft = secondsLeft - 10;
     }
 
     // moving on to next question
@@ -143,6 +140,7 @@ function highScores(event) {
     scoreSection.style.display = "block";
 
     var init = playerName.value.toUpperCase();
+    debugger;
     scoreList.push({playerName: init, score: secondsLeft});
 
     // sorting the scores
@@ -157,7 +155,7 @@ function highScores(event) {
     scoreListEl.innerHTML = "";
     for (let i = 0; i < scoreList.length; i++) {
         let li = document.createElement("li");
-        li.textContent = init + " " + score;
+        li.textContent = init + ": " + score;
         scoreListEl.append(li);
     }
 };

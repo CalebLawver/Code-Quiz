@@ -68,7 +68,7 @@ header {
 }
 
 /* hidden elements */
-.question-list {
+#all-questions {
     display: none;
 }
 

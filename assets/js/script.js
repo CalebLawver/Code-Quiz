@@ -27,6 +27,8 @@ var highBtn = document.querySelector("#init-btn");
 var score = document.querySelector("#score");
 var scoreList = [];
 
+var quizAgain = document.querySelector("#startOver");
+
 // array of questions
 var questions = [
     {
@@ -141,7 +143,6 @@ function highScores(event) {
     scoreSection.style.display = "block";
 
     var init = playerName.value.toUpperCase();
-    debugger;
     scoreList.push({ initials: init, score: secondsLeft });
 
     // sorting the scores
@@ -159,6 +160,22 @@ function highScores(event) {
         li.textContent = scoreList[i].initials + ": " + scoreList[i].score;
         scoreListEl.append(li);
     }
+
+    // storing the scores
+    storedScores();
+    displayScores();
+};
+
+function storedScores() {
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
+}
+
+function displayScores() {
+    var localScores = JSON.parse(localStorage.getItem("scoreList"));
+
+    if (localScores !== null) {
+        scoreList = localScores;
+    }
 };
 
 // Events
@@ -171,3 +188,10 @@ ansBtn.forEach(item => {
 
 // submitting player score to high scores list.
 highBtn.addEventListener("click", highScores);
+
+quizAgain.addEventListener("click", function() {
+    scoreSection.style.display = "none";
+    startScreen.style.display = "block";
+    secondsLeft = 120;
+    timerEl.textContent = "Time Left: " + secondsLeft;
+});

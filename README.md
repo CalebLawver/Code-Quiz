@@ -15,8 +15,5 @@ SO THAT I can gauge my progress compared to my peers
 * WHEN the game is over
 * THEN I can save my initials and score
 
-# Plan
-* Welcome page, includes start button and about the quiz portion.
-* 5 questions with 4 answers each.
-* 60 second timer for each question
-* High score page, before the high score page the user can save their initials with the score.
+# Link to the project
+* https://caleblawver.github.io/Code-Quiz/

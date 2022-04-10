@@ -78,6 +78,7 @@ function startQuiz() {
 function startTime() {
     var timeInterval = setInterval(function() {
         timerEl.textContent = "Time Left: " + secondsLeft;
+        timerEl.style.display = "block";
         secondsLeft--;
         if (secondsLeft === 0 || questionNumber === questions.length) {
             secondsLeft--;
@@ -114,7 +115,7 @@ function checkAnswer(event) {
     // displaying element for a few seconds
     setTimeout(function() {
         p.style.display = "none";
-    }, 2000);
+    }, 800);
 
     // Were you right or wrong?
     if (questions[questionNumber].correct === event.target.value) {

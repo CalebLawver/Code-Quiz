@@ -22,7 +22,7 @@ header {
     border-bottom: 5px solid var(--primary);
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .wrapper {
@@ -41,6 +41,13 @@ header {
     width: 60%;
     text-align: center;
     margin: 20px auto;
+}
+
+.question-list {
+    margin: 20px auto;
+    width: 50%;
+    text-align: center;
+    list-style-type: none;
 }
 
 .button {
@@ -67,23 +74,26 @@ header {
     font-size: 1rem;
 }
 
-/* hidden elements */
-#all-questions {
-    display: none;
-}
-
-.quest-asked {
-    display: none;
-}
-
-.are-you-right {
-    display: none;
-}
-
 .initials {
-    display: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .highscores {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.highscores ol li {
+    padding-top: 10px;
+    border-bottom:2px solid rgb(46, 45, 45);
+}
+
+/* hidden elements */
+#all-questions,
+.quest-asked,
+.are-you-right,
+.highscores,
+.initials {
     display: none;
 }
